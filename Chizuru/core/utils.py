@@ -4,7 +4,7 @@ import yt_dlp
 from typing import Dict, Union
 from asyncio import Queue, QueueEmpty as Empty
 
-
+# ============ Exceptions ============
 
 class DurationLimitError(Exception):
     pass
@@ -12,24 +12,17 @@ class DurationLimitError(Exception):
 class FFmpegReturnCodeError(Exception):
     pass
 
-
+# ============ Constants ============
 
 DURATION_LIMIT = 300
-
-
-
 active = []
+
+# ============ Active Chats ============
 
 async def get_active_chats() -> list:
     return active
 
-
-
-
-
-
-# ===================================================================================== #
-
+# ============ Queue System ============
 
 queues: Dict[int, Queue] = {}
 
@@ -66,8 +59,7 @@ def clear(chat_id: int):
             queues[chat_id].queue = []
     raise Empty
 
-
-# ===================================================================================== #
+# ============ Audio Stream ============
 
 async def get_audio_stream(link):
     ydl_opts = {
@@ -80,14 +72,13 @@ async def get_audio_stream(link):
     }
     x = yt_dlp.YoutubeDL(ydl_opts)
     info = x.extract_info(link, False)
-    audio = os.path.join(
-        "downloads", f"{info['id']}.{info['ext']}"
-    )
+    audio = os.path.join("downloads", f"{info['id']}.{info['ext']}")
     if os.path.exists(audio):
         return audio
     x.download([link])
     return audio
 
+# ============ Video Stream ============
 
 async def get_video_stream(link):
     ydl_opts = {
@@ -100,12 +91,8 @@ async def get_video_stream(link):
     }
     x = yt_dlp.YoutubeDL(ydl_opts)
     info = x.extract_info(link, False)
-    video = os.path.join(
-        "downloads", f"{info['id']}.{info['ext']}"
-    )
+    video = os.path.join("downloads", f"{info['id']}.{info['ext']}")
     if os.path.exists(video):
         return video
     x.download([link])
     return video
-
-
