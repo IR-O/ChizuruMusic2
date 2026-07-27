@@ -1,4 +1,39 @@
-.env
-Chizuru/Sumit.session-journal
-Chizuru/Sumit.session
+# Python cache
 __pycache__/
+*.pyc
+*.pyo
+
+# Session files
+*.session
+*.session-journal
+
+# Environment variables
+.env
+
+# Downloads
+downloads/
+*.mp3
+*.mp4
+*.raw
+*.jpg
+*.png
+*.jpeg
+*.webm
+
+# Temporary files
+*.tmp
+temp_*
+final.png
+background.png
+output.txt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Heroku
+*.log
+*.slug
+*.profile
