@@ -11,10 +11,9 @@ from Chizuru.core.utils import DurationLimitError, get_audio_stream, get_video_s
 from Chizuru.core.thumb_func import generate_cover
 from youtube_search import YoutubeSearch
 from pyrogram.errors import UserAlreadyParticipant
-from pytgcalls import GroupCallFactory
-from pytgcalls.types import AudioPiped, AudioVideoPiped
-from pytgcalls.types import AudioQuality, AudioParameters
-from pytgcalls.types import Stream, StreamEnded
+from pytgcalls import GroupCallFactory, AudioPiped, AudioVideoPiped
+from pytgcalls import AudioQuality, AudioParameters
+from pytgcalls import StreamEnded
 
 # ============ Constants ============
 
