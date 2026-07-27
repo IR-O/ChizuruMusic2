@@ -1,19 +1,16 @@
 import asyncio
 import logging
-from pytgcalls import PyTgCalls  # <-- FIXED: Client hata diya
 from pyrogram import Client
+from pytgcalls import GroupCallFactory, idle
 from config import API_ID, API_HASH, BOT_TOKEN, SESSION_STRING
 
-
-loop = asyncio.get_event_loop()
-
+# Logging setup
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
     level=logging.INFO,
 )
 
-
-
+# Bot Client
 Chizuru = Client(
     ":Chizuru:",
     api_id=API_ID,
@@ -21,6 +18,7 @@ Chizuru = Client(
     bot_token=BOT_TOKEN,
 )
 
+# Userbot Client
 userbot = Client(
     ":userbot:",
     api_id=API_ID,
@@ -28,22 +26,26 @@ userbot = Client(
     session_string=SESSION_STRING,
 )
 
-pytgcalls = PyTgCalls(userbot)
-
-
+# Group Call Factory (v3)
+group_call_factory = GroupCallFactory(userbot)
+group_call = group_call_factory.get_group_call()
 
 async def chizuru_music():
     global BOT_ID, BOT_NAME, BOT_USERNAME
     await Chizuru.start()
     await userbot.start()
-    await pytgcalls.start()
     getme = await Chizuru.get_me()
     BOT_ID = getme.id
     BOT_USERNAME = getme.username
-    if getme.last_name:
-        BOT_NAME = getme.first_name + " " + getme.last_name
-    else:
-        BOT_NAME = getme.first_name
+    BOT_NAME = getme.first_name + (" " + getme.last_name if getme.last_name else "")
+    logging.info(f"Bot started as @{BOT_USERNAME} (ID: {BOT_ID})")
+    
+    # Voice chat join (example, chat_id aap set karein)
+    # await group_call.join(-100123456789)  # <-- Apni GROUP_ID daalein
+    logging.info("Bot is ready. Use /play to start music.")
+    
+    await idle()  # Keep bot running
 
-
-loop.run_until_complete(chizuru_music())
+if __name__ == "__main__":
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(chizuru_music())
