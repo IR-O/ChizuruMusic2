@@ -9,3 +9,8 @@ ffmpeg-python==0.2.0
 tgcrypto==1.2.5
 beautifulsoup4==4.12.2
 pydub==0.25.1
+youtube-search==2.1.2
+Pillow==10.0.0
+numpy==1.24.3
+requests==2.31.0
+wget==3.2
