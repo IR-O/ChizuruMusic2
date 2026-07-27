@@ -1,7 +1,10 @@
 Pyrogram==2.0.106
-Pytgcalls==3.0.0
-MongoDB==4.0.0
+PyTgCalls==3.0.0.dev22
+pymongo==4.5.0
 python-dotenv==1.0.0
-FFmpeg==1.4
-aiohttp==3.9.0
-youtube-dl==2021.12.17
+aiohttp==3.8.6
+yt-dlp==2023.10.13
+ffmpeg-python==0.2.0
+cryptg==2023.1.1
+beautifulsoup4==4.12.2
+regex==2023.10.3
