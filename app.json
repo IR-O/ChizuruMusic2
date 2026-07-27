@@ -19,10 +19,25 @@
             "value": "",
             "required": true
         },
-        "MONGO_DB_URI": {
+        "SESSION_STRING": {
+            "description": "Pyrogram v2 session string for userbot",
+            "value": "",
+            "required": true
+        },
+        "MONGO_URL": {
             "description": "Get a mongodb url from https://cloud.mongodb.com.",
             "value": "",
             "required": true
+        },
+        "OWNER_ID": {
+            "description": "Your Telegram user ID",
+            "value": "",
+            "required": true
+        },
+        "SUDO_USERS": {
+            "description": "Sudo users IDs (space separated)",
+            "value": "",
+            "required": false
         },
         "LOG_GROUP_ID": {
             "description": "Your Telegram Log Group ID",
