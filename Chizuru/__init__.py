@@ -1,7 +1,7 @@
 import asyncio
 import logging
 from pyrogram import Client
-from pytgcalls import GroupCallFactory, idle
+from pytgcalls import GroupCallFactory  # <-- idle hata diya
 from config import API_ID, API_HASH, BOT_TOKEN, SESSION_STRING
 
 # Logging setup
@@ -44,7 +44,8 @@ async def chizuru_music():
     # await group_call.join(-100123456789)  # <-- Apni GROUP_ID daalein
     logging.info("Bot is ready. Use /play to start music.")
     
-    await idle()  # Keep bot running
+    # Keep bot running (idle ka alternative)
+    await asyncio.Event().wait()  # <-- Infinite wait
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
