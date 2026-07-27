@@ -1,6 +1,6 @@
 import asyncio
 import logging
-from pytgcalls import Client as PyTgCalls  # <-- FIXED
+from pytgcalls import PyTgCalls  # <-- FIXED: Client hata diya
 from pyrogram import Client
 from config import API_ID, API_HASH, BOT_TOKEN, SESSION_STRING
 
