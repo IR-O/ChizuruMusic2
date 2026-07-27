@@ -1,13 +1,9 @@
 from pyrogram import filters
 from config import SUDO_USERS
 from Chizuru import Chizuru
-from Chizuru.core.mongo import *
+from Chizuru.core.mongo import get_user, add_user, get_chat, add_chat, get_users, get_chats
 
-
-
-
-# ------------------------------------------------------------------------------- #
-
+# ============================================================================= #
 
 @Chizuru.on_message(group=10)
 async def chat_watcher_func(_, message):
@@ -27,11 +23,8 @@ async def chat_watcher_func(_, message):
             await add_chat(chat_id)
     except:
         pass
-        
 
-
-# --------------------------------------------------------------------------------- #
-
+# ============================================================================= #
 
 @Chizuru.on_message(filters.command("stats") & filters.user(SUDO_USERS))
 async def stats(_, message):
@@ -44,4 +37,3 @@ async def stats(_, message):
 ➻ ᴜsᴇʀs : {users}
 """
     )
-    
