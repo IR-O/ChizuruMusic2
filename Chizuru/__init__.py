@@ -1,6 +1,6 @@
 import asyncio
 import logging
-from pytgcalls import PyTgCalls
+from pytgcalls import Client as PyTgCalls  # <-- FIXED
 from pyrogram import Client
 from config import API_ID, API_HASH, BOT_TOKEN, SESSION_STRING
 
@@ -47,5 +47,3 @@ async def chizuru_music():
 
 
 loop.run_until_complete(chizuru_music())
-
-
