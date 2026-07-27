@@ -1,4 +1,8 @@
-import os, re, subprocess, sys, traceback
+import os
+import re
+import subprocess
+import sys
+import traceback
 from inspect import getfullargspec
 from io import StringIO
 from time import time
@@ -7,8 +11,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from config import OWNER_ID
 from Chizuru import Chizuru
 
-
-
+# ============ Helper Functions ============
 
 async def aexec(code, client, message):
     exec(
@@ -17,12 +20,12 @@ async def aexec(code, client, message):
     )
     return await locals()["__aexec"](client, message)
 
-
 async def edit_or_reply(msg: Message, **kwargs):
     func = msg.edit_text if msg.from_user.is_self else msg.reply
     spec = getfullargspec(func.__wrapped__).args
     await func(**{k: v for k, v in kwargs.items() if k in spec})
 
+# ============ Eval Command ============
 
 @Chizuru.on_edited_message(
     filters.command(["eval", "chizuru"])
@@ -108,12 +111,12 @@ async def executor(client: Chizuru, message: Message):
         )
         await edit_or_reply(message, text=final_output, reply_markup=keyboard)
 
+# ============ Callback Handlers ============
 
 @Chizuru.on_callback_query(filters.regex(r"runtime"))
 async def runtime_func_cq(_, cq):
     runtime = cq.data.split(None, 1)[1]
     await cq.answer(runtime, show_alert=True)
-
 
 @Chizuru.on_callback_query(filters.regex("forceclose"))
 async def forceclose_command(_, CallbackQuery):
@@ -133,8 +136,7 @@ async def forceclose_command(_, CallbackQuery):
     except:
         return
 
-
-
+# ============ Shell Command ============
 
 @Chizuru.on_edited_message(
     filters.command("sh")
@@ -207,6 +209,3 @@ async def shellrunner(chizuru, message):
     else:
         await edit_or_reply(message, text="<b>OUTPUT :</b>\n<code>None</code>")
     await message.stop_propagation()
-
-
-  
