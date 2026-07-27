@@ -1,6 +1,5 @@
 Pyrogram==2.0.106
-pytgcalls==3.0.0.dev24
-tgcalls==3.0.0.dev6  # ✅ Add this
+pytgcalls==3.0.0.dev22
 pymongo==4.9.0
 motor==3.6.0
 python-dotenv==1.0.0
