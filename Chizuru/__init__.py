@@ -1,7 +1,7 @@
 import asyncio
 import logging
 from pyrogram import Client
-from pytgcalls import GroupCallFactory  # <-- idle hata diya
+from pytgcalls import PyTgCalls
 from config import API_ID, API_HASH, BOT_TOKEN, SESSION_STRING
 
 # Logging setup
@@ -26,26 +26,22 @@ userbot = Client(
     session_string=SESSION_STRING,
 )
 
-# Group Call Factory (v3)
-group_call_factory = GroupCallFactory(userbot)
-group_call = group_call_factory.get_group_call()
+# PyTgCalls (v2 compatible)
+pytgcalls = PyTgCalls(userbot)
 
 async def chizuru_music():
     global BOT_ID, BOT_NAME, BOT_USERNAME
     await Chizuru.start()
     await userbot.start()
+    await pytgcalls.start()
     getme = await Chizuru.get_me()
     BOT_ID = getme.id
     BOT_USERNAME = getme.username
     BOT_NAME = getme.first_name + (" " + getme.last_name if getme.last_name else "")
     logging.info(f"Bot started as @{BOT_USERNAME} (ID: {BOT_ID})")
     
-    # Voice chat join (example, chat_id aap set karein)
-    # await group_call.join(-100123456789)  # <-- Apni GROUP_ID daalein
-    logging.info("Bot is ready. Use /play to start music.")
-    
-    # Keep bot running (idle ka alternative)
-    await asyncio.Event().wait()  # <-- Infinite wait
+    # Keep bot running
+    await asyncio.Event().wait()
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
