@@ -11,8 +11,8 @@ from Chizuru.core.utils import DurationLimitError, get_audio_stream, get_video_s
 from Chizuru.core.thumb_func import generate_cover
 from youtube_search import YoutubeSearch
 from pyrogram.errors import UserAlreadyParticipant
-from pytgcalls import Update
 from pytgcalls.types import AudioPiped, AudioVideoPiped, AudioQuality, AudioParameters
+from pytgcalls.types import RawUpdate
 
 # ============ Constants ============
 
@@ -255,7 +255,7 @@ async def skip(_, message: Message):
 # ============ Stream End Handler ============
 
 @Chizuru.pytgcalls.on_stream_end()
-async def on_stream_end(_, update: Update) -> None:
+async def on_stream_end(_, update: RawUpdate) -> None:
     chat_id = update.chat_id
     rq.task_done(chat_id)
     if rq.is_empty(chat_id):
