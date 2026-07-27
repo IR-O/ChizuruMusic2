@@ -1,5 +1,5 @@
 Pyrogram==2.0.106
-PyTgCalls==3.0.0.dev19
+PyTgCalls==3.0.0.dev22
 pymongo==4.5.0
 python-dotenv==1.0.0
 aiohttp==3.9.1
